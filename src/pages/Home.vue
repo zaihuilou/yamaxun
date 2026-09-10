@@ -1,6 +1,7 @@
 <script setup>
 import { site } from '../data/site'
 import { products } from '../data/products'
+import { t, tv } from '../i18n'
 
 const featured = products.slice(0, 3)
 </script>
@@ -11,25 +12,25 @@ const featured = products.slice(0, 3)
     <section class="hero">
       <div class="container hero__inner">
         <div class="hero__copy">
-          <span class="tag">Factory Direct · Since 2008</span>
-          <h1>Nylon Cable Tie Manufacturer &amp; Supplier in China</h1>
-          <p class="hero__lead">
-            ISO 9001 certified factory producing PA66 nylon cable ties, UV resistant ties,
-            releasable ties and stainless steel ties. OEM / ODM supported, free samples,
-            quotation within 12 hours.
-          </p>
+          <span class="tag">{{ t('home.hero.tag') }}</span>
+          <h1>{{ t('home.hero.title') }}</h1>
+          <p class="hero__lead">{{ t('home.hero.lead') }}</p>
           <div class="hero__actions">
-            <RouterLink to="/products" class="btn btn--primary">View Products</RouterLink>
-            <RouterLink to="/contact" class="btn btn--outline">Request a Quote</RouterLink>
+            <RouterLink to="/products" class="btn btn--primary">
+              {{ t('home.hero.ctaProducts') }}
+            </RouterLink>
+            <RouterLink to="/contact" class="btn btn--outline">
+              {{ t('home.hero.ctaQuote') }}
+            </RouterLink>
           </div>
           <ul class="hero__points">
-            <li>100% virgin PA66 material</li>
-            <li>MOQ from 10,000 pcs</li>
-            <li>7-10 days delivery</li>
+            <li>{{ t('home.hero.p1') }}</li>
+            <li>{{ t('home.hero.p2') }}</li>
+            <li>{{ t('home.hero.p3') }}</li>
           </ul>
         </div>
         <div class="hero__media">
-          <img src="/images/hero.png" alt="Assorted nylon cable ties in various colors" />
+          <img src="/images/hero.png" :alt="t('home.hero.title')" />
         </div>
       </div>
     </section>
@@ -37,9 +38,9 @@ const featured = products.slice(0, 3)
     <!-- ============ STATS ============ -->
     <section class="stats">
       <div class="container stats__inner">
-        <div v-for="s in site.stats" :key="s.label" class="stats__item">
+        <div v-for="s in site.stats" :key="s.value" class="stats__item">
           <strong>{{ s.value }}<span>{{ s.suffix }}</span></strong>
-          <span>{{ s.label }}</span>
+          <span>{{ tv(s.label) }}</span>
         </div>
       </div>
     </section>
@@ -48,12 +49,9 @@ const featured = products.slice(0, 3)
     <section class="section">
       <div class="container">
         <div class="heading">
-          <span class="eyebrow">Our Products</span>
-          <h2>Featured Cable Ties</h2>
-          <p>
-            From 80 mm mini ties to 1200 mm heavy duty ties — one factory for your complete
-            cable management range.
-          </p>
+          <span class="eyebrow">{{ t('home.products.eyebrow') }}</span>
+          <h2>{{ t('home.products.title') }}</h2>
+          <p>{{ t('home.products.sub') }}</p>
         </div>
 
         <div class="grid grid--3">
@@ -64,20 +62,22 @@ const featured = products.slice(0, 3)
             class="card product-card"
           >
             <div class="product-card__media">
-              <img :src="p.image" :alt="p.name" loading="lazy" />
-              <span v-if="p.badge" class="tag product-card__badge">{{ p.badge }}</span>
+              <img :src="p.image" :alt="tv(p.name)" loading="lazy" />
+              <span v-if="p.badge" class="tag product-card__badge">{{ tv(p.badge) }}</span>
             </div>
             <div class="product-card__body">
               <span class="product-card__model">{{ p.model }}</span>
-              <h3>{{ p.name }}</h3>
-              <p>{{ p.short }}</p>
-              <span class="product-card__link">View details →</span>
+              <h3>{{ tv(p.name) }}</h3>
+              <p>{{ tv(p.short) }}</p>
+              <span class="product-card__link">{{ t('common.viewDetails') }}</span>
             </div>
           </RouterLink>
         </div>
 
         <div class="center">
-          <RouterLink to="/products" class="btn btn--outline">See all products</RouterLink>
+          <RouterLink to="/products" class="btn btn--outline">
+            {{ t('home.products.seeAll') }}
+          </RouterLink>
         </div>
       </div>
     </section>
@@ -86,16 +86,16 @@ const featured = products.slice(0, 3)
     <section class="section section--soft">
       <div class="container">
         <div class="heading">
-          <span class="eyebrow">Why YAMAXUN</span>
-          <h2>Your Reliable Cable Tie Partner</h2>
-          <p>We are not a trading company. You work directly with the manufacturer.</p>
+          <span class="eyebrow">{{ t('home.why.eyebrow') }}</span>
+          <h2>{{ t('home.why.title') }}</h2>
+          <p>{{ t('home.why.sub') }}</p>
         </div>
 
         <div class="grid grid--3">
-          <div v-for="a in site.advantages" :key="a.title" class="card advantage">
+          <div v-for="a in site.advantages" :key="a.icon" class="card advantage">
             <div class="advantage__icon">{{ a.icon }}</div>
-            <h3>{{ a.title }}</h3>
-            <p>{{ a.text }}</p>
+            <h3>{{ tv(a.title) }}</h3>
+            <p>{{ tv(a.text) }}</p>
           </div>
         </div>
       </div>
@@ -105,22 +105,18 @@ const featured = products.slice(0, 3)
     <section class="section">
       <div class="container about-strip">
         <div class="about-strip__media">
-          <img src="/images/factory.png" alt="YAMAXUN cable tie production workshop" loading="lazy" />
+          <img src="/images/factory.png" :alt="tv(site.legalName)" loading="lazy" />
         </div>
         <div class="about-strip__copy">
-          <span class="eyebrow">About the factory</span>
-          <h2>12,000 m² Facility with 46 Injection Lines</h2>
-          <p>
-            {{ site.legalName }} is located in Ningbo, one hour away from the Port of Ningbo-Zhoushan.
-            We run 46 automatic injection molding machines and an in-house testing laboratory, which
-            allows us to control quality from raw material to finished carton.
-          </p>
+          <span class="eyebrow">{{ t('home.factory.eyebrow') }}</span>
+          <h2>{{ t('home.factory.title') }}</h2>
+          <p>{{ t('home.factory.text', { legal: tv(site.legalName) }) }}</p>
           <ul class="check-list">
-            <li>Annual capacity of 3,800 tons of cable ties</li>
-            <li>In-house tensile, aging and flammability tests on every batch</li>
-            <li>Full export documentation for EU, US and Middle East markets</li>
+            <li>{{ t('home.factory.c1') }}</li>
+            <li>{{ t('home.factory.c2') }}</li>
+            <li>{{ t('home.factory.c3') }}</li>
           </ul>
-          <RouterLink to="/about" class="btn btn--primary">Learn more about us</RouterLink>
+          <RouterLink to="/about" class="btn btn--primary">{{ t('home.factory.cta') }}</RouterLink>
         </div>
       </div>
     </section>
@@ -129,14 +125,14 @@ const featured = products.slice(0, 3)
     <section class="section section--soft">
       <div class="container">
         <div class="heading">
-          <span class="eyebrow">Applications</span>
-          <h2>Serving Many Industries</h2>
-          <p>Our cable ties are used wherever cables, hoses and pipes need to be fixed safely.</p>
+          <span class="eyebrow">{{ t('home.industries.eyebrow') }}</span>
+          <h2>{{ t('home.industries.title') }}</h2>
+          <p>{{ t('home.industries.sub') }}</p>
         </div>
         <div class="industries">
-          <div v-for="i in site.industries" :key="i.name" class="industry">
+          <div v-for="i in site.industries" :key="i.icon" class="industry">
             <span class="industry__icon">{{ i.icon }}</span>
-            <span>{{ i.name }}</span>
+            <span>{{ tv(i.name) }}</span>
           </div>
         </div>
       </div>
@@ -146,14 +142,14 @@ const featured = products.slice(0, 3)
     <section class="section">
       <div class="container">
         <div class="heading">
-          <span class="eyebrow">How we work</span>
-          <h2>From Inquiry to Delivery in 5 Steps</h2>
+          <span class="eyebrow">{{ t('home.process.eyebrow') }}</span>
+          <h2>{{ t('home.process.title') }}</h2>
         </div>
         <div class="process">
           <div v-for="(p, idx) in site.process" :key="p.step" class="process__item">
             <div class="process__num">{{ p.step }}</div>
-            <h3>{{ p.title }}</h3>
-            <p>{{ p.text }}</p>
+            <h3>{{ tv(p.title) }}</h3>
+            <p>{{ tv(p.text) }}</p>
             <span v-if="idx < site.process.length - 1" class="process__arrow">→</span>
           </div>
         </div>
@@ -164,16 +160,16 @@ const featured = products.slice(0, 3)
     <section class="section section--soft">
       <div class="container">
         <div class="heading">
-          <span class="eyebrow">Testimonials</span>
-          <h2>What Our Customers Say</h2>
+          <span class="eyebrow">{{ t('home.testimonials.eyebrow') }}</span>
+          <h2>{{ t('home.testimonials.title') }}</h2>
         </div>
         <div class="grid grid--3">
-          <figure v-for="t in site.testimonials" :key="t.name" class="card quote">
+          <figure v-for="item in site.testimonials" :key="item.name" class="card quote">
             <div class="quote__stars">★★★★★</div>
-            <blockquote>“{{ t.quote }}”</blockquote>
+            <blockquote>“{{ tv(item.quote) }}”</blockquote>
             <figcaption>
-              <strong>{{ t.name }}</strong>
-              <span>{{ t.role }}</span>
+              <strong>{{ item.name }}</strong>
+              <span>{{ tv(item.role) }}</span>
             </figcaption>
           </figure>
         </div>
@@ -184,10 +180,10 @@ const featured = products.slice(0, 3)
     <section class="section--dark cta">
       <div class="container cta__inner">
         <div>
-          <h2>Need a quotation or free samples?</h2>
-          <p>Tell us the size, color and quantity. We reply within 12 working hours.</p>
+          <h2>{{ t('home.cta.title') }}</h2>
+          <p>{{ t('home.cta.sub') }}</p>
         </div>
-        <RouterLink to="/contact" class="btn btn--primary">Send Inquiry</RouterLink>
+        <RouterLink to="/contact" class="btn btn--primary">{{ t('home.cta.btn') }}</RouterLink>
       </div>
     </section>
   </div>

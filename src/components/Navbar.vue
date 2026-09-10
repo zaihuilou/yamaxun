@@ -1,15 +1,16 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { site } from '../data/site'
+import { t, tv, locale, setLocale, locales } from '../i18n'
 
 const menuOpen = ref(false)
 const scrolled = ref(false)
 
 const links = [
-  { to: '/', label: 'Home' },
-  { to: '/products', label: 'Products' },
-  { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/', labelKey: 'nav.home' },
+  { to: '/products', labelKey: 'nav.products' },
+  { to: '/about', labelKey: 'nav.about' },
+  { to: '/contact', labelKey: 'nav.contact' },
 ]
 
 function onScroll() {
@@ -33,7 +34,7 @@ onUnmounted(() => {
         <span class="logo__mark">CT</span>
         <span class="logo__text">
           <strong>{{ site.brand }}</strong>
-          <small>{{ site.tagline }}</small>
+          <small>{{ tv(site.tagline) }}</small>
         </span>
       </RouterLink>
 
@@ -45,17 +46,31 @@ onUnmounted(() => {
           class="nav__link"
           @click="menuOpen = false"
         >
-          {{ l.label }}
+          {{ t(l.labelKey) }}
         </RouterLink>
+
+        <div class="lang" :aria-label="t('nav.language')">
+          <button
+            v-for="l in locales"
+            :key="l.code"
+            class="lang__btn"
+            :class="{ 'is-active': locale === l.code }"
+            :title="l.label"
+            @click="setLocale(l.code)"
+          >
+            {{ l.short }}
+          </button>
+        </div>
+
         <RouterLink to="/contact" class="btn btn--primary nav__cta" @click="menuOpen = false">
-          Get a Quote
+          {{ t('nav.quote') }}
         </RouterLink>
       </nav>
 
       <button
         class="nav__toggle"
         :aria-expanded="menuOpen"
-        aria-label="Toggle navigation"
+        :aria-label="t('nav.toggle')"
         @click="menuOpen = !menuOpen"
       >
         <span :class="{ open: menuOpen }"></span>
@@ -114,6 +129,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   line-height: 1.15;
+  min-width: 0;
 }
 
 .logo__text strong {
@@ -131,7 +147,7 @@ onUnmounted(() => {
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 34px;
+  gap: 30px;
 }
 
 .nav__link {
@@ -167,6 +183,36 @@ onUnmounted(() => {
 .nav__cta {
   padding: 11px 22px;
   font-size: 14px;
+}
+
+/* Language switcher */
+.lang {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+.lang__btn {
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  line-height: 1.4;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.lang__btn:hover {
+  color: var(--brand);
+}
+
+.lang__btn.is-active {
+  background: var(--brand);
+  color: #fff;
 }
 
 /* Mobile toggle */
@@ -211,6 +257,12 @@ onUnmounted(() => {
   transform: translateY(-6px) rotate(-45deg);
 }
 
+@media (max-width: 1040px) {
+  .nav__links {
+    gap: 20px;
+  }
+}
+
 @media (max-width: 900px) {
   .nav__toggle {
     display: block;
@@ -242,6 +294,11 @@ onUnmounted(() => {
 
   .nav__link::after {
     display: none;
+  }
+
+  .lang {
+    margin-top: 16px;
+    align-self: flex-start;
   }
 
   .nav__cta {

@@ -3,6 +3,7 @@ import { ref, computed, watch, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { products, categories } from '../data/products'
 import { site } from '../data/site'
+import { t, tv } from '../i18n'
 
 const route = useRoute()
 const router = useRouter()
@@ -37,7 +38,6 @@ function closeProduct() {
   router.replace({ query: q })
 }
 
-// React to browser back / forward and external links
 watch(
   () => route.query,
   (q) => {
@@ -58,13 +58,10 @@ onUnmounted(() => {
     <section class="page-head">
       <div class="container">
         <nav class="crumbs">
-          <RouterLink to="/">Home</RouterLink> / <span>Products</span>
+          <RouterLink to="/">{{ t('common.home') }}</RouterLink> / <span>{{ t('nav.products') }}</span>
         </nav>
-        <h1>Nylon Cable Ties &amp; Fastening Solutions</h1>
-        <p>
-          All products are manufactured in our own factory from 100% virgin PA66. Click any item to
-          see full specifications, packaging and MOQ.
-        </p>
+        <h1>{{ t('product.title') }}</h1>
+        <p>{{ t('product.sub') }}</p>
       </div>
     </section>
 
@@ -79,9 +76,9 @@ onUnmounted(() => {
             :class="{ 'is-active': activeCategory === c.key }"
             @click="setCategory(c.key)"
           >
-            {{ c.label }}
+            {{ tv(c.label) }}
           </button>
-          <span class="filters__count">{{ filtered.length }} products</span>
+          <span class="filters__count">{{ t('product.count', { n: filtered.length }) }}</span>
         </div>
 
         <div class="grid grid--3">
@@ -92,18 +89,18 @@ onUnmounted(() => {
             @click="openProduct(p.id)"
           >
             <div class="product-card__media">
-              <img :src="p.image" :alt="p.name" loading="lazy" />
-              <span v-if="p.badge" class="tag product-card__badge">{{ p.badge }}</span>
+              <img :src="p.image" :alt="tv(p.name)" loading="lazy" />
+              <span v-if="p.badge" class="tag product-card__badge">{{ tv(p.badge) }}</span>
             </div>
             <div class="product-card__body">
               <span class="product-card__model">{{ p.model }}</span>
-              <h2>{{ p.name }}</h2>
-              <p>{{ p.short }}</p>
+              <h2>{{ tv(p.name) }}</h2>
+              <p>{{ tv(p.short) }}</p>
               <ul class="product-card__meta">
-                <li><strong>Material</strong> {{ p.specs[0][1] }}</li>
-                <li><strong>MOQ</strong> {{ p.moq }}</li>
+                <li><strong>{{ t('product.modal.material') }}</strong> {{ tv(p.specs[0].v) }}</li>
+                <li><strong>{{ t('product.modal.moq') }}</strong> {{ tv(p.moq) }}</li>
               </ul>
-              <span class="product-card__link">View details →</span>
+              <span class="product-card__link">{{ t('common.viewDetails') }}</span>
             </div>
           </article>
         </div>
@@ -114,26 +111,23 @@ onUnmounted(() => {
     <section class="section section--soft">
       <div class="container oem">
         <div>
-          <span class="eyebrow">OEM &amp; ODM</span>
-          <h2>Can't find the exact size?</h2>
-          <p>
-            We customize length, width, color, package and logo printing. Send us a drawing or a
-            sample and we will make the tooling for you.
-          </p>
+          <span class="eyebrow">{{ t('product.oem.eyebrow') }}</span>
+          <h2>{{ t('product.oem.title') }}</h2>
+          <p>{{ t('product.oem.text') }}</p>
           <ul class="check-list">
-            <li>Custom Pantone color matching</li>
-            <li>Logo printing on head or strap</li>
-            <li>Retail blister / header card packaging</li>
-            <li>Private label &amp; barcode service</li>
+            <li>{{ t('product.oem.c1') }}</li>
+            <li>{{ t('product.oem.c2') }}</li>
+            <li>{{ t('product.oem.c3') }}</li>
+            <li>{{ t('product.oem.c4') }}</li>
           </ul>
-          <RouterLink to="/contact" class="btn btn--primary">Tell us your requirement</RouterLink>
+          <RouterLink to="/contact" class="btn btn--primary">{{ t('product.oem.cta') }}</RouterLink>
         </div>
         <div class="oem__facts">
           <div v-for="f in site.process.slice(0, 3)" :key="f.step" class="oem__fact">
             <span>{{ f.step }}</span>
             <div>
-              <strong>{{ f.title }}</strong>
-              <p>{{ f.text }}</p>
+              <strong>{{ tv(f.title) }}</strong>
+              <p>{{ tv(f.text) }}</p>
             </div>
           </div>
         </div>
@@ -144,60 +138,66 @@ onUnmounted(() => {
     <Transition name="fade">
       <div v-if="activeProduct" class="modal" @click.self="closeProduct">
         <div class="modal__panel" role="dialog" aria-modal="true">
-          <button class="modal__close" aria-label="Close" @click="closeProduct">×</button>
+          <button class="modal__close" :aria-label="t('product.modal.close')" @click="closeProduct">
+            ×
+          </button>
 
           <div class="modal__grid">
             <div class="modal__media">
-              <img :src="activeProduct.image" :alt="activeProduct.name" />
+              <img :src="activeProduct.image" :alt="tv(activeProduct.name)" />
             </div>
 
             <div class="modal__body">
               <span class="product-card__model">{{ activeProduct.model }}</span>
-              <h2>{{ activeProduct.name }}</h2>
-              <p class="modal__desc">{{ activeProduct.description }}</p>
+              <h2>{{ tv(activeProduct.name) }}</h2>
+              <p class="modal__desc">{{ tv(activeProduct.description) }}</p>
 
-              <h4>Key features</h4>
+              <h4>{{ t('product.modal.features') }}</h4>
               <ul class="check-list">
-                <li v-for="f in activeProduct.features" :key="f">{{ f }}</li>
+                <li v-for="(f, i) in activeProduct.features" :key="i">{{ tv(f) }}</li>
               </ul>
 
-              <h4>Applications</h4>
+              <h4>{{ t('product.modal.applications') }}</h4>
               <div class="chips">
-                <span v-for="a in activeProduct.applications" :key="a" class="chip">{{ a }}</span>
+                <span v-for="(a, i) in activeProduct.applications" :key="i" class="chip">
+                  {{ tv(a) }}
+                </span>
               </div>
             </div>
           </div>
 
           <div class="modal__specs">
-            <h4>Specifications</h4>
+            <h4>{{ t('product.modal.specs') }}</h4>
             <table>
               <tbody>
-                <tr v-for="s in activeProduct.specs" :key="s[0]">
-                  <th>{{ s[0] }}</th>
-                  <td>{{ s[1] }}</td>
+                <tr v-for="(s, i) in activeProduct.specs" :key="i">
+                  <th>{{ tv(s.k) }}</th>
+                  <td>{{ tv(s.v) }}</td>
                 </tr>
                 <tr>
-                  <th>Packaging</th>
-                  <td>{{ activeProduct.packaging }}</td>
+                  <th>{{ t('product.modal.packaging') }}</th>
+                  <td>{{ tv(activeProduct.packaging) }}</td>
                 </tr>
                 <tr>
-                  <th>MOQ</th>
-                  <td>{{ activeProduct.moq }}</td>
+                  <th>{{ t('product.modal.moq') }}</th>
+                  <td>{{ tv(activeProduct.moq) }}</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           <div class="modal__footer">
-            <span class="modal__note">Free samples available · Quotation within 12 hours</span>
+            <span class="modal__note">{{ t('product.modal.note') }}</span>
             <div class="modal__actions">
-              <button class="btn btn--outline" @click="closeProduct">Back to list</button>
+              <button class="btn btn--outline" @click="closeProduct">
+                {{ t('product.modal.back') }}
+              </button>
               <RouterLink
                 :to="`/contact?product=${activeProduct.id}`"
                 class="btn btn--primary"
                 @click="closeProduct"
               >
-                Inquire this product
+                {{ t('product.modal.inquire') }}
               </RouterLink>
             </div>
           </div>

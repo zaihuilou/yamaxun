@@ -1,8 +1,23 @@
 <script setup>
 import { ref } from 'vue'
 import { site } from '../data/site'
+import { t, tv } from '../i18n'
 
 const openFaq = ref(0)
+
+const qcItems = [
+  { titleKey: 'about.qc.t1', descKey: 'about.qc.d1' },
+  { titleKey: 'about.qc.t2', descKey: 'about.qc.d2' },
+  { titleKey: 'about.qc.t3', descKey: 'about.qc.d3' },
+  { titleKey: 'about.qc.t4', descKey: 'about.qc.d4' },
+  { titleKey: 'about.qc.t5', descKey: 'about.qc.d5' },
+]
+
+const introCards = [
+  { value: '2008', labelKey: 'about.stat1' },
+  { value: '12,000 m²', labelKey: 'about.stat2' },
+  { value: '3,800 T', labelKey: 'about.stat3' },
+]
 </script>
 
 <template>
@@ -10,12 +25,11 @@ const openFaq = ref(0)
     <!-- ============ PAGE HEAD ============ -->
     <section class="page-head">
       <div class="container">
-        <nav class="crumbs"><RouterLink to="/">Home</RouterLink> / <span>About</span></nav>
-        <h1>About {{ site.legalName }}</h1>
-        <p>
-          A dedicated cable tie manufacturer in Ningbo, China — from raw material to finished
-          carton, everything is done in our own factory.
-        </p>
+        <nav class="crumbs">
+          <RouterLink to="/">{{ t('common.home') }}</RouterLink> / <span>{{ t('nav.about') }}</span>
+        </nav>
+        <h1>{{ t('about.title', { legal: tv(site.legalName) }) }}</h1>
+        <p>{{ t('about.sub') }}</p>
       </div>
     </section>
 
@@ -23,37 +37,19 @@ const openFaq = ref(0)
     <section class="section">
       <div class="container intro">
         <div class="intro__copy">
-          <span class="eyebrow">Who we are</span>
-          <h2>18 Years Focused on One Product: Cable Ties</h2>
-          <p>
-            Founded in 2008, {{ site.legalName }} has grown from a small workshop with 6 injection
-            machines into a 12,000 m² modern factory with 46 automated production lines. We do one
-            thing only — manufacturing nylon cable ties and stainless steel ties — and we do it
-            seriously.
-          </p>
-          <p>
-            Today we export to more than 60 countries and regions, supplying electrical
-            wholesalers, solar installers, automotive harness makers and retail brands. Our
-            customers stay with us because the quality of every shipment is identical to the
-            approved sample.
-          </p>
+          <span class="eyebrow">{{ t('about.who') }}</span>
+          <h2>{{ t('about.introTitle') }}</h2>
+          <p>{{ t('about.introP1', { legal: tv(site.legalName) }) }}</p>
+          <p>{{ t('about.introP2') }}</p>
           <div class="intro__cards">
-            <div class="intro__card">
-              <strong>2008</strong>
-              <span>Year established</span>
-            </div>
-            <div class="intro__card">
-              <strong>12,000 m²</strong>
-              <span>Factory area</span>
-            </div>
-            <div class="intro__card">
-              <strong>3,800 T</strong>
-              <span>Annual output</span>
+            <div v-for="c in introCards" :key="c.labelKey" class="intro__card">
+              <strong>{{ c.value }}</strong>
+              <span>{{ t(c.labelKey) }}</span>
             </div>
           </div>
         </div>
         <div class="intro__media">
-          <img src="/images/factory.png" alt="Cable tie production workshop" loading="lazy" />
+          <img src="/images/factory.png" :alt="tv(site.legalName)" loading="lazy" />
         </div>
       </div>
     </section>
@@ -62,19 +58,12 @@ const openFaq = ref(0)
     <section class="section section--soft">
       <div class="container grid grid--2">
         <div class="card mission">
-          <h3>Our Mission</h3>
-          <p>
-            To make cable fixing safer and cheaper for our partners by providing stable quality,
-            honest pricing and fast response — so our distributors can focus on growing their own
-            market.
-          </p>
+          <h3>{{ t('about.mission') }}</h3>
+          <p>{{ t('about.missionText') }}</p>
         </div>
         <div class="card mission">
-          <h3>Our Vision</h3>
-          <p>
-            To become the most trusted cable tie supplier for small and medium distributors
-            worldwide, known for reliability rather than for the lowest price.
-          </p>
+          <h3>{{ t('about.vision') }}</h3>
+          <p>{{ t('about.visionText') }}</p>
         </div>
       </div>
     </section>
@@ -83,15 +72,15 @@ const openFaq = ref(0)
     <section class="section">
       <div class="container">
         <div class="heading">
-          <span class="eyebrow">Milestones</span>
-          <h2>How We Grew</h2>
+          <span class="eyebrow">{{ t('about.milestonesEyebrow') }}</span>
+          <h2>{{ t('about.milestonesTitle') }}</h2>
         </div>
         <ol class="timeline">
           <li v-for="m in site.milestones" :key="m.year" class="timeline__item">
             <div class="timeline__year">{{ m.year }}</div>
             <div class="timeline__body">
-              <h3>{{ m.title }}</h3>
-              <p>{{ m.text }}</p>
+              <h3>{{ tv(m.title) }}</h3>
+              <p>{{ tv(m.text) }}</p>
             </div>
           </li>
         </ol>
@@ -102,30 +91,24 @@ const openFaq = ref(0)
     <section class="section section--soft">
       <div class="container">
         <div class="heading">
-          <span class="eyebrow">Quality control</span>
-          <h2>Certifications &amp; Testing</h2>
-          <p>Every batch is tested in our own laboratory. Third party reports are available on request.</p>
+          <span class="eyebrow">{{ t('about.certEyebrow') }}</span>
+          <h2>{{ t('about.certTitle') }}</h2>
+          <p>{{ t('about.certSub') }}</p>
         </div>
         <div class="grid grid--3">
           <div v-for="c in site.certificates" :key="c.code" class="card cert">
             <div class="cert__badge">✓</div>
             <strong>{{ c.code }}</strong>
-            <span>{{ c.title }}</span>
+            <span>{{ tv(c.title) }}</span>
           </div>
         </div>
 
         <div class="qc">
-          <div class="qc__item" v-for="(t, i) in [
-            { t: 'Raw material inspection', d: 'PA66 granules tested for melt flow index and moisture before molding.' },
-            { t: 'In-process inspection', d: 'Dimensions and head locking checked every 30 minutes on each machine.' },
-            { t: 'Tensile test', d: 'Loop tensile strength tested on 20 samples per batch with a digital force gauge.' },
-            { t: 'Aging & UV test', d: 'Heat aging at 120°C and xenon-arc weathering for outdoor grade products.' },
-            { t: 'Final inspection', d: 'AQL 2.5 sampling on appearance, packing quantity and carton marking.' },
-          ]" :key="i">
+          <div v-for="(item, i) in qcItems" :key="item.titleKey" class="qc__item">
             <span class="qc__num">{{ String(i + 1).padStart(2, '0') }}</span>
             <div>
-              <strong>{{ t.t }}</strong>
-              <p>{{ t.d }}</p>
+              <strong>{{ t(item.titleKey) }}</strong>
+              <p>{{ t(item.descKey) }}</p>
             </div>
           </div>
         </div>
@@ -136,25 +119,25 @@ const openFaq = ref(0)
     <section class="section">
       <div class="container faq-wrap">
         <div class="heading heading--left">
-          <span class="eyebrow">FAQ</span>
-          <h2>Frequently Asked Questions</h2>
-          <p>Anything else? Send us a message and we will answer within 12 hours.</p>
+          <span class="eyebrow">{{ t('about.faqEyebrow') }}</span>
+          <h2>{{ t('about.faqTitle') }}</h2>
+          <p>{{ t('about.faqSub') }}</p>
         </div>
         <div class="faq">
           <div
             v-for="(f, i) in site.faqs"
-            :key="f.q"
+            :key="i"
             class="faq__item"
             :class="{ 'is-open': openFaq === i }"
           >
             <button class="faq__q" @click="openFaq = openFaq === i ? -1 : i">
-              <span>{{ f.q }}</span>
+              <span>{{ tv(f.q) }}</span>
               <i>{{ openFaq === i ? '−' : '+' }}</i>
             </button>
-            <div v-show="openFaq === i" class="faq__a">{{ f.a }}</div>
+            <div v-show="openFaq === i" class="faq__a">{{ tv(f.a) }}</div>
           </div>
         </div>
-        <RouterLink to="/contact" class="btn btn--primary">Ask a question</RouterLink>
+        <RouterLink to="/contact" class="btn btn--primary">{{ t('about.faqCta') }}</RouterLink>
       </div>
     </section>
   </div>

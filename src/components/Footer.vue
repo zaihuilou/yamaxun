@@ -1,14 +1,15 @@
 <script setup>
 import { site } from '../data/site'
 import { categories } from '../data/products'
+import { t, tv } from '../i18n'
 
 const year = new Date().getFullYear()
 
 const quickLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/products', label: 'Products' },
-  { to: '/about', label: 'About Us' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/', labelKey: 'nav.home' },
+  { to: '/products', labelKey: 'nav.products' },
+  { to: '/about', labelKey: 'nav.about' },
+  { to: '/contact', labelKey: 'nav.contact' },
 ]
 </script>
 
@@ -20,45 +21,47 @@ const quickLinks = [
           <span class="logo__mark">CT</span>
           <strong>{{ site.brand }}</strong>
         </div>
-        <p class="footer__desc">{{ site.description }}</p>
+        <p class="footer__desc">{{ tv(site.description) }}</p>
         <ul class="footer__contact">
-          <li>Email: <a :href="`mailto:${site.email}`">{{ site.email }}</a></li>
-          <li>Tel: <a :href="`tel:${site.phone.replace(/\s/g, '')}`">{{ site.phone }}</a></li>
-          <li>WhatsApp: {{ site.whatsapp }}</li>
+          <li>{{ t('footer.email') }}: <a :href="`mailto:${site.email}`">{{ site.email }}</a></li>
+          <li>{{ t('footer.tel') }}: <a :href="`tel:${site.phone.replace(/\s/g, '')}`">{{ site.phone }}</a></li>
+          <li>{{ t('footer.whatsapp') }}: {{ site.whatsapp }}</li>
         </ul>
       </div>
 
       <div>
-        <h4>Quick Links</h4>
+        <h4>{{ t('footer.quickLinks') }}</h4>
         <ul class="footer__list">
           <li v-for="l in quickLinks" :key="l.to">
-            <RouterLink :to="l.to">{{ l.label }}</RouterLink>
+            <RouterLink :to="l.to">{{ t(l.labelKey) }}</RouterLink>
           </li>
         </ul>
       </div>
 
       <div>
-        <h4>Product Categories</h4>
+        <h4>{{ t('footer.categories') }}</h4>
         <ul class="footer__list">
           <li v-for="c in categories.filter((c) => c.key !== 'all')" :key="c.key">
-            <RouterLink :to="`/products?c=${c.key}`">{{ c.label }}</RouterLink>
+            <RouterLink :to="`/products?c=${c.key}`">{{ tv(c.label) }}</RouterLink>
           </li>
         </ul>
       </div>
 
       <div>
-        <h4>Factory</h4>
+        <h4>{{ t('footer.factory') }}</h4>
         <ul class="footer__list footer__list--plain">
-          <li>{{ site.address }}</li>
-          <li>{{ site.workingHours }}</li>
+          <li>{{ tv(site.address) }}</li>
+          <li>{{ tv(site.workingHours) }}</li>
         </ul>
-        <RouterLink to="/contact" class="btn btn--primary footer__cta">Send Inquiry</RouterLink>
+        <RouterLink to="/contact" class="btn btn--primary footer__cta">
+          {{ t('footer.inquiry') }}
+        </RouterLink>
       </div>
     </div>
 
     <div class="container footer__bottom">
-      <span>© {{ year }} {{ site.legalName }}. All rights reserved.</span>
-      <span>Nylon Cable Tie Manufacturer · ISO 9001 · CE · RoHS · UL</span>
+      <span>© {{ year }} {{ tv(site.legalName) }}. {{ t('footer.rights') }}</span>
+      <span>{{ t('footer.certs') }}</span>
     </div>
   </footer>
 </template>
