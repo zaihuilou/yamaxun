@@ -1,0 +1,365 @@
+/* =========================================================
+   Global stylesheet - CABLE TIE B2B SITE
+   Replace colors in :root to re-brand the whole site.
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Brand palette */
+  --brand: #0b2545;
+  --brand-2: #13315c;
+  --brand-3: #1e4b8f;
+  --accent: #ff7a18;
+  --accent-dark: #e0690c;
+  --accent-soft: #fff4ec;
+
+  /* Neutrals */
+  --ink: #1f2937;
+  --muted: #64748b;
+  --line: #e3e8ef;
+  --bg: #ffffff;
+  --bg-soft: #f5f7fa;
+  --white: #ffffff;
+
+  /* Shape */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 24px 60px rgba(11, 37, 69, 0.18);
+
+  --maxw: 1180px;
+  --nav-h: 72px;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  line-height: 1.22;
+  color: var(--brand);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ---------- Layout helpers ---------- */
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 88px 0;
+}
+
+.section--soft {
+  background: var(--bg-soft);
+}
+
+.section--dark {
+  background: var(--brand);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.section--dark h2,
+.section--dark h3 {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 56px 0;
+  }
+  .container {
+    padding: 0 18px;
+  }
+}
+
+/* ---------- Section heading ---------- */
+
+.heading {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.heading .eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.heading h2 {
+  font-size: clamp(28px, 4vw, 38px);
+  margin-bottom: 14px;
+}
+
+.heading p {
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.heading--left {
+  margin-left: 0;
+  text-align: left;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease,
+    color 0.18s ease, border-color 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(255, 122, 24, 0.32);
+}
+
+.btn--primary:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(255, 122, 24, 0.4);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.btn--outline {
+  background: #fff;
+  color: var(--brand);
+  border: 1px solid var(--line);
+}
+
+.btn--outline:hover {
+  border-color: var(--brand);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: #d3dce6;
+}
+
+/* ---------- Grid utilities ---------- */
+
+.grid {
+  display: grid;
+  gap: 26px;
+}
+
+.grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 960px) {
+  .grid--3,
+  .grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid--2,
+  .grid--3,
+  .grid--4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Misc ---------- */
+
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+.check-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+}
+
+.check-list li::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 13px;
+  width: 6px;
+  height: 3px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+
+/* ---------- Page transition ---------- */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.fade-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+  /* iOS Safari auto-zooms the page when a focused control is smaller than 16px */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* ---------- Accessibility ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
