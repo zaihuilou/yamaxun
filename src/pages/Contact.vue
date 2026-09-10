@@ -1,8 +1,9 @@
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { site } from '../data/site'
 import { products } from '../data/products'
+import { t, tv } from '../i18n'
 
 const route = useRoute()
 
@@ -17,11 +18,10 @@ const form = reactive({
   message: '',
 })
 
-// Client side validation messages
+// Local errors hold an i18n key; server errors hold plain text from Formcarry
 const errors = reactive({})
-// Server side (Formcarry) validation messages, keyed by field name
 const serverErrors = ref({})
-const errorMessage = ref('')
+const errorKey = ref('')
 const submitting = ref(false)
 const sent = ref(false)
 const demoMode = ref(false)
@@ -32,15 +32,17 @@ onMounted(() => {
 })
 
 function validate() {
-  errors.name = form.name.trim() ? '' : 'Please enter your name'
-  errors.email = /^\S+@\S+\.\S+$/.test(form.email) ? '' : 'Please enter a valid email address'
-  errors.message = form.message.trim() ? '' : 'Please describe what you need'
+  errors.name = form.name.trim() ? '' : 'err.name'
+  errors.email = /^\S+@\S+\.\S+$/.test(form.email) ? '' : 'err.email'
+  errors.message = form.message.trim() ? '' : 'err.message'
   return !errors.name && !errors.email && !errors.message
 }
 
-// Merge local + Formcarry errors for a given field
-function err(field) {
-  return serverErrors.value[field] || errors[field] || ''
+// Merge local (translated) + Formcarry (raw) errors for a given field
+function errText(field) {
+  if (serverErrors.value[field]) return serverErrors.value[field]
+  const key = errors[field]
+  return key ? t(key) : ''
 }
 
 function clearError(field) {
@@ -49,7 +51,7 @@ function clearError(field) {
 }
 
 async function submit() {
-  errorMessage.value = ''
+  errorKey.value = ''
   serverErrors.value = {}
 
   if (!validate()) return
@@ -77,10 +79,8 @@ async function submit() {
     const data = await response.json()
 
     if (response.ok && data.code === 200) {
-      // Success - Formcarry has stored the submission and sent the notification email
       sent.value = true
     } else if (data.code === 422) {
-      // Validation failed: data.errors = { field: { message } }
       const raw = data.errors || {}
       serverErrors.value = Object.fromEntries(
         Object.entries(raw).map(([field, value]) => [
@@ -88,13 +88,17 @@ async function submit() {
           (value && value.message) || String(value),
         ])
       )
-      errorMessage.value = data.message || 'Please check the highlighted fields.'
+      errorKey.value = 'err.checkFields'
     } else {
-      errorMessage.value = data.message || 'Something went wrong, please try again.'
+      // Formcarry may send its own message; fall back to a translated generic one
+      errorKey.value = 'err.generic'
+      if (data.message) {
+        serverErrors.value = { _form: data.message }
+        errorKey.value = ''
+      }
     }
   } catch (e) {
-    errorMessage.value =
-      'Could not reach the server. Please email us directly at ' + site.email + '.'
+    errorKey.value = 'err.network'
   } finally {
     submitting.value = false
   }
@@ -112,15 +116,34 @@ function reset() {
     message: '',
   })
   serverErrors.value = {}
-  errorMessage.value = ''
+  errorKey.value = ''
   sent.value = false
 }
 
-const contactCards = [
-  { icon: '📧', label: 'Email', value: site.email, link: `mailto:${site.email}` },
-  { icon: '📞', label: 'Telephone', value: site.phone, link: `tel:${site.phone.replace(/\s/g, '')}` },
-  { icon: '💬', label: 'WhatsApp', value: site.whatsapp, link: `https://wa.me/${site.whatsapp.replace(/\D/g, '')}` },
-  { icon: '🕘', label: 'Working hours', value: site.workingHours, link: '' },
+const contactCards = computed(() => [
+  { icon: '📧', label: t('contact.email'), value: site.email, link: `mailto:${site.email}` },
+  {
+    icon: '📞',
+    label: t('contact.phone'),
+    value: site.phone,
+    link: `tel:${site.phone.replace(/\s/g, '')}`,
+  },
+  {
+    icon: '💬',
+    label: t('contact.whatsapp'),
+    value: site.whatsapp,
+    link: `https://wa.me/${site.whatsapp.replace(/\D/g, '')}`,
+  },
+  { icon: '🕘', label: t('contact.hours'), value: tv(site.workingHours), link: '' },
+])
+
+const tradeTerms = [
+  { labelKey: 'contact.trade.moq', valueKey: 'contact.trade.v.moq' },
+  { labelKey: 'contact.trade.samples', valueKey: 'contact.trade.v.samples' },
+  { labelKey: 'contact.trade.payment', valueKey: 'contact.trade.v.payment' },
+  { labelKey: 'contact.trade.incoterms', valueKey: 'contact.trade.v.incoterms' },
+  { labelKey: 'contact.trade.port', valueKey: 'contact.trade.v.port' },
+  { labelKey: 'contact.trade.lead', valueKey: 'contact.trade.v.lead' },
 ]
 </script>
 
@@ -129,12 +152,11 @@ const contactCards = [
     <!-- ============ PAGE HEAD ============ -->
     <section class="page-head">
       <div class="container">
-        <nav class="crumbs"><RouterLink to="/">Home</RouterLink> / <span>Contact</span></nav>
-        <h1>Contact Us &amp; Get a Quotation</h1>
-        <p>
-          Fill in the form below and we will reply with a detailed quotation and product photos
-          within 12 working hours. Free samples are available for all standard sizes.
-        </p>
+        <nav class="crumbs">
+          <RouterLink to="/">{{ t('common.home') }}</RouterLink> / <span>{{ t('nav.contact') }}</span>
+        </nav>
+        <h1>{{ t('contact.title') }}</h1>
+        <p>{{ t('contact.sub') }}</p>
       </div>
     </section>
 
@@ -159,139 +181,152 @@ const contactCards = [
     <section class="section section--soft">
       <div class="container contact">
         <div class="card form-card">
-          <h2>Send an Inquiry</h2>
+          <h2>{{ t('contact.formTitle') }}</h2>
           <p class="form-card__sub">
-            Fields marked with <em>*</em> are required. The more details you give, the more accurate
-            the quotation.
+            {{ t('contact.formSub') }}
           </p>
 
           <div v-if="demoMode" class="notice notice--warn">
-            <strong>Demo mode.</strong> No Formcarry endpoint is configured yet, so the form does
-            not send emails. Add your endpoint to <code>src/data/site.js</code> →
-            <code>formEndpoint</code>.
+            <strong>{{ t('contact.demoTitle') }}</strong> {{ t('contact.demoText') }}
+            <code>src/data/site.js</code> → <code>formEndpoint</code>.
           </div>
 
           <form v-if="!sent" @submit.prevent="submit" novalidate>
             <div class="field-row">
               <label class="field">
-                <span>Name <em>*</em></span>
+                <span>{{ t('contact.field.name') }} <em>*</em></span>
                 <input
                   v-model="form.name"
                   type="text"
                   name="name"
-                  placeholder="John Smith"
+                  :placeholder="t('contact.ph.name')"
                   @input="clearError('name')"
                 />
-                <small v-if="err('name')" class="err">{{ err('name') }}</small>
+                <small v-if="errText('name')" class="err">{{ errText('name') }}</small>
               </label>
               <label class="field">
-                <span>Email <em>*</em></span>
+                <span>{{ t('contact.field.email') }} <em>*</em></span>
                 <input
                   v-model="form.email"
                   type="email"
                   name="email"
-                  placeholder="john@company.com"
+                  :placeholder="t('contact.ph.email')"
                   @input="clearError('email')"
                 />
-                <small v-if="err('email')" class="err">{{ err('email') }}</small>
+                <small v-if="errText('email')" class="err">{{ errText('email') }}</small>
               </label>
             </div>
 
             <div class="field-row">
               <label class="field">
-                <span>Company</span>
-                <input v-model="form.company" type="text" name="company" placeholder="Company name" />
+                <span>{{ t('contact.field.company') }}</span>
+                <input
+                  v-model="form.company"
+                  type="text"
+                  name="company"
+                  :placeholder="t('contact.ph.company')"
+                />
               </label>
               <label class="field">
-                <span>Country / Region</span>
-                <input v-model="form.country" type="text" name="country" placeholder="Germany" />
+                <span>{{ t('contact.field.country') }}</span>
+                <input
+                  v-model="form.country"
+                  type="text"
+                  name="country"
+                  :placeholder="t('contact.ph.country')"
+                />
               </label>
             </div>
 
             <div class="field-row">
               <label class="field">
-                <span>Phone / WhatsApp</span>
-                <input v-model="form.phone" type="text" name="phone" placeholder="+49 123 456789" />
+                <span>{{ t('contact.field.phone') }}</span>
+                <input
+                  v-model="form.phone"
+                  type="text"
+                  name="phone"
+                  :placeholder="t('contact.ph.phone')"
+                />
               </label>
               <label class="field">
-                <span>Quantity needed</span>
+                <span>{{ t('contact.field.quantity') }}</span>
                 <input
                   v-model="form.quantity"
                   type="text"
                   name="quantity"
-                  placeholder="e.g. 200,000 pcs"
+                  :placeholder="t('contact.ph.quantity')"
                 />
               </label>
             </div>
 
             <label class="field">
-              <span>Product of interest</span>
+              <span>{{ t('contact.field.product') }}</span>
               <select v-model="form.product" name="product">
-                <option value="">Please select / not sure yet</option>
+                <option value="">{{ t('contact.field.productDefault') }}</option>
                 <option v-for="p in products" :key="p.id" :value="p.id">
-                  {{ p.model }} — {{ p.name }}
+                  {{ p.model }} — {{ tv(p.name) }}
                 </option>
               </select>
             </label>
 
             <label class="field">
-              <span>Message <em>*</em></span>
+              <span>{{ t('contact.field.message') }} <em>*</em></span>
               <textarea
                 v-model="form.message"
                 name="message"
                 rows="5"
-                placeholder="Size (length x width), color, packaging, delivery terms..."
+                :placeholder="t('contact.ph.message')"
                 @input="clearError('message')"
               ></textarea>
-              <small v-if="err('message')" class="err">{{ err('message') }}</small>
+              <small v-if="errText('message')" class="err">{{ errText('message') }}</small>
             </label>
 
-            <p v-if="errorMessage" class="err err--block">{{ errorMessage }}</p>
+            <p v-if="serverErrors._form" class="err err--block">{{ serverErrors._form }}</p>
+            <p v-else-if="errorKey" class="err err--block">
+              {{ t(errorKey, { email: site.email }) }}
+            </p>
 
             <button class="btn btn--primary btn--block" type="submit" :disabled="submitting">
-              {{ submitting ? 'Sending...' : 'Send Inquiry' }}
+              {{ submitting ? t('contact.sending') : t('contact.submit') }}
             </button>
           </form>
 
           <div v-else class="success">
             <div class="success__icon">✓</div>
-            <h3>Thank you, your inquiry has been sent!</h3>
-            <p>We will get back to you within 12 working hours with a quotation.</p>
-            <button class="btn btn--outline" @click="reset">Send another inquiry</button>
+            <h3>{{ t('contact.successTitle') }}</h3>
+            <p>{{ t('contact.successText') }}</p>
+            <button class="btn btn--outline" @click="reset">{{ t('contact.again') }}</button>
           </div>
         </div>
 
         <aside class="contact__side">
           <div class="card info">
-            <h3>Factory Address</h3>
-            <p>{{ site.address }}</p>
+            <h3>{{ t('contact.address') }}</h3>
+            <p>{{ tv(site.address) }}</p>
             <div class="info__map">
-              <span>📍 Ningbo, Zhejiang, China</span>
+              <span>📍 {{ tv(site.address).split(',').slice(-2).join(',').trim() }}</span>
             </div>
           </div>
 
           <div class="card info">
-            <h3>Trade Terms</h3>
+            <h3>{{ t('contact.trade') }}</h3>
             <ul class="info__list">
-              <li><span>MOQ</span> From 10,000 pcs per size</li>
-              <li><span>Samples</span> Free, courier cost on buyer</li>
-              <li><span>Payment</span> T/T 30% deposit, L/C at sight</li>
-              <li><span>Incoterms</span> EXW / FOB / CIF / DDP</li>
-              <li><span>Port</span> Ningbo or Shanghai</li>
-              <li><span>Lead time</span> 7-10 days (standard)</li>
+              <li v-for="term in tradeTerms" :key="term.labelKey">
+                <span>{{ t(term.labelKey) }}</span>{{ t(term.valueKey) }}
+              </li>
             </ul>
           </div>
 
           <div class="card info info--dark">
-            <h3>Prefer to talk directly?</h3>
-            <p>Add us on WhatsApp for a fast reply during Chinese working hours.</p>
+            <h3>{{ t('contact.chatTitle') }}</h3>
+            <p>{{ t('contact.chatText') }}</p>
             <a
               class="btn btn--primary btn--block"
               :href="`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`"
               target="_blank"
               rel="noopener"
             >
-              Chat on WhatsApp
+              {{ t('contact.chatBtn') }}
             </a>
           </div>
         </aside>
@@ -379,11 +414,6 @@ const contactCards = [
   color: var(--muted);
   font-size: 15px;
   margin-bottom: 24px;
-}
-
-.form-card__sub em {
-  color: var(--accent);
-  font-style: normal;
 }
 
 /* ---------- Notice ---------- */
