@@ -219,6 +219,9 @@ onUnmounted(() => {
   display: none;
   width: 42px;
   height: 42px;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
   border-radius: 10px;
   border: 1px solid var(--line);
   position: relative;
@@ -229,19 +232,27 @@ onUnmounted(() => {
 .nav__toggle span::after {
   content: '';
   position: absolute;
-  left: 11px;
   width: 18px;
   height: 2px;
   background: var(--brand);
-  transition: transform 0.25s ease, opacity 0.2s ease;
+  transition: transform 0.25s ease, top 0.25s ease, opacity 0.2s ease;
 }
 
 .nav__toggle span {
-  top: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
+.nav__toggle span::before,
+.nav__toggle span::after {
+  left: 0;
+}
+
 .nav__toggle span::before {
   top: -6px;
 }
+
 .nav__toggle span::after {
   top: 6px;
 }
@@ -249,11 +260,15 @@ onUnmounted(() => {
 .nav__toggle span.open {
   background: transparent;
 }
+
 .nav__toggle span.open::before {
-  transform: translateY(6px) rotate(45deg);
+  top: 0;
+  transform: rotate(45deg);
 }
+
 .nav__toggle span.open::after {
-  transform: translateY(-6px) rotate(-45deg);
+  top: 0;
+  transform: rotate(-45deg);
 }
 
 @media (max-width: 1040px) {

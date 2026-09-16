@@ -24,7 +24,7 @@ const quickLinks = [
         <ul class="footer__contact">
           <li>{{ t('footer.email') }}: <a :href="`mailto:${site.email}`">{{ site.email }}</a></li>
           <li>{{ t('footer.tel') }}: <a :href="`tel:${site.phone.replace(/\s/g, '')}`">{{ site.phone }}</a></li>
-          <li>{{ t('footer.whatsapp') }}: {{ site.whatsapp }}</li>
+          <li>{{ t('footer.wechat') }}: {{ site.wechat }}</li>
         </ul>
         <RouterLink to="/contact" class="btn btn--primary footer__cta">
           {{ t('footer.inquiry') }}

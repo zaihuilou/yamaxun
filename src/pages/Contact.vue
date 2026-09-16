@@ -130,15 +130,14 @@ const contactCards = computed(() => [
   },
   {
     icon: '💬',
-    label: t('contact.whatsapp'),
-    value: site.whatsapp,
-    link: `https://wa.me/${site.whatsapp.replace(/\D/g, '')}`,
+    label: t('contact.wechat'),
+    value: site.wechat,
+    link: '',
   },
 ])
 
 const tradeTerms = [
   { labelKey: 'contact.trade.moq', valueKey: 'contact.trade.v.moq' },
-  { labelKey: 'contact.trade.payment', valueKey: 'contact.trade.v.payment' },
   { labelKey: 'contact.trade.incoterms', valueKey: 'contact.trade.v.incoterms' },
   { labelKey: 'contact.trade.port', valueKey: 'contact.trade.v.port' },
   { labelKey: 'contact.trade.lead', valueKey: 'contact.trade.v.lead' },
@@ -310,14 +309,7 @@ const tradeTerms = [
           <div class="card info info--dark">
             <h3>{{ t('contact.chatTitle') }}</h3>
             <p>{{ t('contact.chatText') }}</p>
-            <a
-              class="btn btn--primary btn--block"
-              :href="`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`"
-              target="_blank"
-              rel="noopener"
-            >
-              {{ t('contact.chatBtn') }}
-            </a>
+            <div class="btn btn--primary btn--block">{{ site.wechat }}</div>
           </div>
         </aside>
       </div>

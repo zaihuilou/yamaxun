@@ -150,8 +150,8 @@ export const site = {
     },
     {
       step: '03',
-      title: { en: 'Mass production', zh: '批量生产' },
-      text: { en: 'Production starts after deposit.', zh: '收到定金后开始生产。' },
+      title: { en: 'Bulk stocking', zh: '批量备货' },
+      text: { en: 'Bulk stocking starts after the deposit is received.', zh: '收到定金之后批量备货。' },
     },
     {
       step: '04',
@@ -217,13 +217,6 @@ export const site = {
       },
     },
     {
-      q: { en: 'What are your payment terms?', zh: '付款方式是什么？' },
-      a: {
-        en: 'T/T 30% deposit and 70% before shipment. L/C at sight is accepted for orders above USD 20,000.',
-        zh: 'T/T 30% 定金，发货前付 70%。订单金额超过 2 万美元可接受即期信用证。',
-      },
-    },
-    {
       q: { en: 'How long until shipment?', zh: '发货期多久？' },
       a: {
         en: 'Standard items ship in 7-10 working days. Custom items ship in 15-20 working days after confirmation.',
@@ -233,8 +226,8 @@ export const site = {
     {
       q: { en: 'Which shipping methods do you support?', zh: '支持哪些运输方式？' },
       a: {
-        en: 'EXW, FOB Ningbo / Shanghai, CIF, DDP. We also support Amazon FBA labeling and pallet packing.',
-        zh: '支持 EXW、FOB 宁波/上海、CIF、DDP。也可提供亚马逊 FBA 贴标和托盘包装。',
+        en: 'EXW, FOB Ningbo / Shanghai, CIF. We also support Amazon FBA labeling and pallet packing.',
+        zh: '支持 EXW、FOB 宁波/上海、CIF。也可提供亚马逊 FBA 贴标和托盘包装。',
       },
     },
   ],

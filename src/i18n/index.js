@@ -13,7 +13,7 @@ import en from './en'
 import zh from './zh'
 
 const dicts = { en, zh }
-const STORAGE_KEY = 'sxpackage-locale'
+const STORAGE_KEY = 'sxpackage-locale-v2'
 
 export const locales = [
   { code: 'en', short: 'EN', label: 'English' },
@@ -26,10 +26,6 @@ function detectLocale() {
     if (saved && dicts[saved]) return saved
   } catch (e) {
     /* localStorage may be unavailable */
-  }
-  if (typeof navigator !== 'undefined') {
-    const lang = (navigator.language || 'en').toLowerCase()
-    if (lang.startsWith('zh')) return 'zh'
   }
   return 'en'
 }
