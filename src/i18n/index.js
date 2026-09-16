@@ -13,7 +13,7 @@ import en from './en'
 import zh from './zh'
 
 const dicts = { en, zh }
-const STORAGE_KEY = 'yamaxun-locale'
+const STORAGE_KEY = 'sxpackage-locale'
 
 export const locales = [
   { code: 'en', short: 'EN', label: 'English' },

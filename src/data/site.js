@@ -9,25 +9,25 @@
  */
 
 export const site = {
-  brand: 'YAMAXUN',
+  brand: 'sxpackage',
   legalName: {
-    en: 'YAMAXUN INDUSTRIAL CO., LTD.',
-    zh: '亚玛逊工业有限公司',
+    en: 'sxpackage INDUSTRIAL CO., LTD.',
+    zh: '我们工业有限公司',
   },
   tagline: {
     en: 'Nylon Cable Tie Manufacturer & Supplier',
     zh: '尼龙扎带厂家与供应商',
   },
   description: {
-    en: 'YAMAXUN is a professional nylon cable tie manufacturer in China, supplying PA66 cable ties, UV resistant ties, releasable ties and stainless steel ties with OEM / ODM service.',
-    zh: '亚玛逊是中国专业的尼龙扎带生产厂家，供应 PA66 扎带、抗紫外线扎带、可重复使用扎带、不锈钢扎带，支持 OEM / ODM 定制。',
+    en: 'sxpackage is a professional nylon cable tie manufacturer in China, supplying PA66 cable ties, UV resistant ties, releasable ties and stainless steel ties with OEM / ODM service.',
+    zh: '我们是中国专业的尼龙扎带生产厂家，供应 PA66 扎带、抗紫外线扎带、可重复使用扎带、不锈钢扎带，支持 OEM / ODM 定制。',
   },
 
   /* Contact (shared) */
-  email: 'sales@yamaxun-industrial.com',
+  email: 'sales@sxpackage.com',
   phone: '+86-574-8888-6688',
   whatsapp: '+86 138 8888 6688',
-  wechat: 'yamaxun-sales',
+  wechat: 'sxpackage-sales',
 
   address: {
     en: 'No. 128, Yunlin Industrial Zone, Ningbo, Zhejiang, 315000, China',
@@ -111,22 +111,6 @@ export const site = {
       },
     },
     {
-      icon: '🔬',
-      title: { en: 'In-house QC laboratory', zh: '自有质检实验室' },
-      text: {
-        en: 'Every batch is tested for tensile strength, dimensions, heat aging and flammability before shipment.',
-        zh: '每批次出货前均检测拉力、尺寸、热老化和阻燃性能。',
-      },
-    },
-    {
-      icon: '🚀',
-      title: { en: 'Fast lead time', zh: '交期快' },
-      text: {
-        en: 'Standard items ship within 7-10 days. Custom colors, lengths and printing within 15-20 days.',
-        zh: '常规品 7-10 天发货，定制颜色、长度和印刷 15-20 天。',
-      },
-    },
-    {
       icon: '🧩',
       title: { en: 'OEM & ODM service', zh: 'OEM 与 ODM 服务' },
       text: {
@@ -136,10 +120,10 @@ export const site = {
     },
     {
       icon: '📦',
-      title: { en: 'Low MOQ & free samples', zh: '低起订量与免费样品' },
+      title: { en: 'Low MOQ', zh: '低起订量' },
       text: {
-        en: 'MOQ from 10,000 pcs per size. Free samples are sent within 3 working days.',
-        zh: '每个规格 10,000 条起订，免费样品 3 个工作日内寄出。',
+        en: 'MOQ from 10,000 pcs per size.',
+        zh: '每个规格 10,000 条起订。',
       },
     },
     {
@@ -162,20 +146,15 @@ export const site = {
     {
       step: '02',
       title: { en: 'Quotation', zh: '报价' },
-      text: { en: 'A detailed quotation with specs and photos within 12 hours.', zh: '12 小时内提供含规格与图片的详细报价。' },
+      text: { en: 'A detailed quotation with specs and photos within 24 hours.', zh: '24 小时内提供含规格与图片的详细报价。' },
     },
     {
       step: '03',
-      title: { en: 'Samples', zh: '寄样' },
-      text: { en: 'Free samples produced and shipped for your approval.', zh: '免费打样并寄出，供您确认。' },
+      title: { en: 'Mass production', zh: '批量生产' },
+      text: { en: 'Production starts after deposit.', zh: '收到定金后开始生产。' },
     },
     {
       step: '04',
-      title: { en: 'Mass production', zh: '批量生产' },
-      text: { en: 'Production starts after deposit, with QC reports per batch.', zh: '收到定金后开始生产，每批提供质检报告。' },
-    },
-    {
-      step: '05',
       title: { en: 'Delivery', zh: '交付发货' },
       text: { en: 'Sea / air / express shipping with full export documents.', zh: '海运 / 空运 / 快递发货，随附全套出口单证。' },
     },
@@ -197,8 +176,8 @@ export const site = {
   testimonials: [
     {
       quote: {
-        en: 'We have been importing cable ties from YAMAXUN for 6 years. Quality is stable, the tensile strength always passes our incoming inspection, and never a delayed shipment.',
-        zh: '我们从亚玛逊进口扎带已经 6 年了。品质稳定，拉力每次都通过我们的来料检验，从来没延误过交期。',
+        en: 'We have been importing cable ties from sxpackage for 6 years. Quality is stable, the tensile strength always passes our incoming inspection, and never a delayed shipment.',
+        zh: '从我们进口扎带已经 6 年了。品质稳定，拉力每次都通过我们的来料检验，从来没延误过交期。',
       },
       name: 'Michael Brandt',
       role: { en: 'Purchasing Manager, ElektroHandel GmbH (Germany)', zh: '采购经理，ElektroHandel GmbH（德国）' },
@@ -213,8 +192,8 @@ export const site = {
     },
     {
       quote: {
-        en: 'Compared with 4 other suppliers, YAMAXUN offered the best balance of price, certification and communication. Samples arrived in 4 days.',
-        zh: '对比了另外 4 家供应商，亚玛逊在价格、认证和沟通上平衡得最好，样品 4 天就到了。',
+        en: 'Compared with 4 other suppliers, sxpackage offered the best balance of price, certification and communication.',
+        zh: '对比了另外 4 家供应商，我们在价格、认证和沟通上平衡得最好。',
       },
       name: 'David Osei',
       role: { en: 'Owner, Westline Industrial Supply (Ghana)', zh: '负责人，Westline Industrial Supply（加纳）' },
@@ -231,13 +210,6 @@ export const site = {
       },
     },
     {
-      q: { en: 'Can I get free samples?', zh: '可以免费拿样品吗？' },
-      a: {
-        en: 'Yes. Samples are free of charge; you only pay the courier cost, or we can send them with your freight collect account (DHL / FedEx / UPS).',
-        zh: '可以。样品免费，您只需承担快递费，也可以使用您的 DHL / FedEx / UPS 到付账号。',
-      },
-    },
-    {
       q: { en: 'What material do you use?', zh: '你们用什么原料？' },
       a: {
         en: 'We use 100% virgin PA66 (Nylon 66) from certified suppliers. Recycled material is available on request at a lower price.',
@@ -247,15 +219,15 @@ export const site = {
     {
       q: { en: 'What are your payment terms?', zh: '付款方式是什么？' },
       a: {
-        en: 'T/T 30% deposit and 70% before shipment. L/C at sight is accepted for orders above USD 20,000. PayPal and Western Union for sample orders.',
-        zh: 'T/T 30% 定金，发货前付 70%。订单金额超过 2 万美元可接受即期信用证。样品单可用 PayPal 和西联汇款。',
+        en: 'T/T 30% deposit and 70% before shipment. L/C at sight is accepted for orders above USD 20,000.',
+        zh: 'T/T 30% 定金，发货前付 70%。订单金额超过 2 万美元可接受即期信用证。',
       },
     },
     {
-      q: { en: 'How long is the lead time?', zh: '交货期多久？' },
+      q: { en: 'How long until shipment?', zh: '发货期多久？' },
       a: {
-        en: 'Standard items: 7-10 working days. Custom items: 15-20 working days after sample approval.',
-        zh: '常规品 7-10 个工作日；定制品在样品确认后 15-20 个工作日。',
+        en: 'Standard items ship in 7-10 working days. Custom items ship in 15-20 working days after confirmation.',
+        zh: '常规品 7-10 个工作日发货；定制品确认后 15-20 个工作日发货。',
       },
     },
     {

@@ -9,7 +9,6 @@ const scrolled = ref(false)
 const links = [
   { to: '/', labelKey: 'nav.home' },
   { to: '/products', labelKey: 'nav.products' },
-  { to: '/about', labelKey: 'nav.about' },
   { to: '/contact', labelKey: 'nav.contact' },
 ]
 
@@ -31,7 +30,7 @@ onUnmounted(() => {
   <header class="nav" :class="{ 'nav--solid': scrolled }">
     <div class="container nav__inner">
       <RouterLink to="/" class="logo" @click="menuOpen = false">
-        <span class="logo__mark">CT</span>
+        <span class="logo__mark">SX</span>
         <span class="logo__text">
           <strong>{{ site.brand }}</strong>
           <small>{{ tv(site.tagline) }}</small>

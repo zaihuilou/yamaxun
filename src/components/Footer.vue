@@ -8,7 +8,6 @@ const year = new Date().getFullYear()
 const quickLinks = [
   { to: '/', labelKey: 'nav.home' },
   { to: '/products', labelKey: 'nav.products' },
-  { to: '/about', labelKey: 'nav.about' },
   { to: '/contact', labelKey: 'nav.contact' },
 ]
 </script>
@@ -18,7 +17,7 @@ const quickLinks = [
     <div class="container footer__top">
       <div class="footer__brand">
         <div class="logo">
-          <span class="logo__mark">CT</span>
+          <span class="logo__mark">SX</span>
           <strong>{{ site.brand }}</strong>
         </div>
         <p class="footer__desc">{{ tv(site.description) }}</p>
@@ -27,6 +26,9 @@ const quickLinks = [
           <li>{{ t('footer.tel') }}: <a :href="`tel:${site.phone.replace(/\s/g, '')}`">{{ site.phone }}</a></li>
           <li>{{ t('footer.whatsapp') }}: {{ site.whatsapp }}</li>
         </ul>
+        <RouterLink to="/contact" class="btn btn--primary footer__cta">
+          {{ t('footer.inquiry') }}
+        </RouterLink>
       </div>
 
       <div>
@@ -46,17 +48,6 @@ const quickLinks = [
           </li>
         </ul>
       </div>
-
-      <div>
-        <h4>{{ t('footer.factory') }}</h4>
-        <ul class="footer__list footer__list--plain">
-          <li>{{ tv(site.address) }}</li>
-          <li>{{ tv(site.workingHours) }}</li>
-        </ul>
-        <RouterLink to="/contact" class="btn btn--primary footer__cta">
-          {{ t('footer.inquiry') }}
-        </RouterLink>
-      </div>
     </div>
 
     <div class="container footer__bottom">
@@ -75,7 +66,7 @@ const quickLinks = [
 
 .footer__top {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1.3fr;
+  grid-template-columns: 1.8fr 1fr 1fr;
   gap: 40px;
   padding: 64px 24px 48px;
 }
@@ -103,6 +94,7 @@ const quickLinks = [
   color: #fff;
   font-weight: 800;
   font-size: 14px;
+  letter-spacing: 0.02em;
   display: grid;
   place-items: center;
 }
@@ -128,10 +120,6 @@ const quickLinks = [
 
 .footer__list li {
   margin-bottom: 10px;
-}
-
-.footer__list--plain {
-  color: rgba(255, 255, 255, 0.65);
 }
 
 .footer__cta {

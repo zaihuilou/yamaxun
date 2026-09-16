@@ -5,7 +5,6 @@ import { t, locale } from '../i18n'
 
 import Home from '../pages/Home.vue'
 import Product from '../pages/Product.vue'
-import About from '../pages/About.vue'
 import Contact from '../pages/Contact.vue'
 
 const routes = [
@@ -21,12 +20,7 @@ const routes = [
     component: Product,
     meta: { titleKey: 'seo.products.title', descKey: 'seo.products.desc' },
   },
-  {
-    path: '/about',
-    name: 'about',
-    component: About,
-    meta: { titleKey: 'seo.about.title', descKey: 'seo.about.desc' },
-  },
+  { path: '/about', redirect: '/' },
   {
     path: '/contact',
     name: 'contact',

@@ -134,12 +134,10 @@ const contactCards = computed(() => [
     value: site.whatsapp,
     link: `https://wa.me/${site.whatsapp.replace(/\D/g, '')}`,
   },
-  { icon: '🕘', label: t('contact.hours'), value: tv(site.workingHours), link: '' },
 ])
 
 const tradeTerms = [
   { labelKey: 'contact.trade.moq', valueKey: 'contact.trade.v.moq' },
-  { labelKey: 'contact.trade.samples', valueKey: 'contact.trade.v.samples' },
   { labelKey: 'contact.trade.payment', valueKey: 'contact.trade.v.payment' },
   { labelKey: 'contact.trade.incoterms', valueKey: 'contact.trade.v.incoterms' },
   { labelKey: 'contact.trade.port', valueKey: 'contact.trade.v.port' },
@@ -162,7 +160,7 @@ const tradeTerms = [
 
     <!-- ============ CONTACT CARDS ============ -->
     <section class="section">
-      <div class="container grid grid--4">
+      <div class="container grid grid--3">
         <a
           v-for="c in contactCards"
           :key="c.label"
@@ -300,14 +298,6 @@ const tradeTerms = [
         </div>
 
         <aside class="contact__side">
-          <div class="card info">
-            <h3>{{ t('contact.address') }}</h3>
-            <p>{{ tv(site.address) }}</p>
-            <div class="info__map">
-              <span>📍 {{ tv(site.address).split(',').slice(-2).join(',').trim() }}</span>
-            </div>
-          </div>
-
           <div class="card info">
             <h3>{{ t('contact.trade') }}</h3>
             <ul class="info__list">
@@ -553,17 +543,6 @@ const tradeTerms = [
 .info p {
   color: var(--muted);
   font-size: 15px;
-}
-
-.info__map {
-  margin-top: 14px;
-  background: var(--bg-soft);
-  border-radius: var(--radius-sm);
-  padding: 18px;
-  text-align: center;
-  font-size: 14px;
-  color: var(--muted);
-  border: 1px dashed var(--line);
 }
 
 .info__list li {

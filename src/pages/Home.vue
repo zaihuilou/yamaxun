@@ -35,16 +35,6 @@ const featured = products.slice(0, 3)
       </div>
     </section>
 
-    <!-- ============ STATS ============ -->
-    <section class="stats">
-      <div class="container stats__inner">
-        <div v-for="s in site.stats" :key="s.value" class="stats__item">
-          <strong>{{ s.value }}<span>{{ s.suffix }}</span></strong>
-          <span>{{ tv(s.label) }}</span>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ FEATURED PRODUCTS ============ -->
     <section class="section">
       <div class="container">
@@ -88,35 +78,17 @@ const featured = products.slice(0, 3)
         <div class="heading">
           <span class="eyebrow">{{ t('home.why.eyebrow') }}</span>
           <h2>{{ t('home.why.title') }}</h2>
-          <p>{{ t('home.why.sub') }}</p>
         </div>
 
-        <div class="grid grid--3">
-          <div v-for="a in site.advantages" :key="a.icon" class="card advantage">
+        <div class="advantages">
+          <div v-for="(a, idx) in site.advantages" :key="a.icon" class="card advantage">
+            <span class="advantage__num">{{ String(idx + 1).padStart(2, '0') }}</span>
             <div class="advantage__icon">{{ a.icon }}</div>
-            <h3>{{ tv(a.title) }}</h3>
-            <p>{{ tv(a.text) }}</p>
+            <div class="advantage__copy">
+              <h3>{{ tv(a.title) }}</h3>
+              <p>{{ tv(a.text) }}</p>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ FACTORY STRIP ============ -->
-    <section class="section">
-      <div class="container about-strip">
-        <div class="about-strip__media">
-          <img src="/images/factory.png" :alt="tv(site.legalName)" loading="lazy" />
-        </div>
-        <div class="about-strip__copy">
-          <span class="eyebrow">{{ t('home.factory.eyebrow') }}</span>
-          <h2>{{ t('home.factory.title') }}</h2>
-          <p>{{ t('home.factory.text', { legal: tv(site.legalName) }) }}</p>
-          <ul class="check-list">
-            <li>{{ t('home.factory.c1') }}</li>
-            <li>{{ t('home.factory.c2') }}</li>
-            <li>{{ t('home.factory.c3') }}</li>
-          </ul>
-          <RouterLink to="/about" class="btn btn--primary">{{ t('home.factory.cta') }}</RouterLink>
         </div>
       </div>
     </section>
@@ -152,26 +124,6 @@ const featured = products.slice(0, 3)
             <p>{{ tv(p.text) }}</p>
             <span v-if="idx < site.process.length - 1" class="process__arrow">→</span>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ TESTIMONIALS ============ -->
-    <section class="section section--soft">
-      <div class="container">
-        <div class="heading">
-          <span class="eyebrow">{{ t('home.testimonials.eyebrow') }}</span>
-          <h2>{{ t('home.testimonials.title') }}</h2>
-        </div>
-        <div class="grid grid--3">
-          <figure v-for="item in site.testimonials" :key="item.name" class="card quote">
-            <div class="quote__stars">★★★★★</div>
-            <blockquote>“{{ tv(item.quote) }}”</blockquote>
-            <figcaption>
-              <strong>{{ item.name }}</strong>
-              <span>{{ tv(item.role) }}</span>
-            </figcaption>
-          </figure>
         </div>
       </div>
     </section>
@@ -244,39 +196,6 @@ const featured = products.slice(0, 3)
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-}
-
-/* ---------- Stats ---------- */
-.stats {
-  background: var(--brand);
-  color: #fff;
-}
-
-.stats__inner {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 40px 24px;
-  gap: 24px;
-  text-align: center;
-}
-
-.stats__item strong {
-  display: block;
-  font-size: 38px;
-  font-weight: 800;
-  line-height: 1.1;
-  color: #fff;
-}
-
-.stats__item strong span {
-  color: var(--accent);
-}
-
-.stats__item > span {
-  display: block;
-  margin-top: 6px;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.66);
 }
 
 /* ---------- Product card ---------- */
@@ -352,68 +271,51 @@ const featured = products.slice(0, 3)
 }
 
 /* ---------- Advantage ---------- */
+.advantages {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
 .advantage {
-  padding: 30px 26px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  column-gap: 18px;
+  align-items: start;
+  position: relative;
+  padding: 28px 56px 28px 26px;
+  min-height: 148px;
+}
+
+.advantage__num {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #c5d0dc;
 }
 
 .advantage__icon {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border-radius: 14px;
   background: var(--accent-soft);
   display: grid;
   place-items: center;
-  font-size: 24px;
-  margin-bottom: 18px;
+  font-size: 26px;
+  margin: 0;
 }
 
-.advantage h3 {
+.advantage__copy h3 {
   font-size: 18px;
-  margin-bottom: 8px;
+  margin: 4px 0 8px;
 }
 
-.advantage p {
+.advantage__copy p {
   color: var(--muted);
   font-size: 15px;
-}
-
-/* ---------- About strip ---------- */
-.about-strip {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 52px;
-  align-items: center;
-}
-
-.about-strip__media img {
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.about-strip__copy .eyebrow {
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-
-.about-strip__copy h2 {
-  font-size: clamp(26px, 3.2vw, 34px);
-  margin-bottom: 16px;
-}
-
-.about-strip__copy p {
-  color: var(--muted);
-  margin-bottom: 18px;
-}
-
-.about-strip__copy .btn {
-  margin-top: 14px;
 }
 
 /* ---------- Industries ---------- */
@@ -492,39 +394,6 @@ const featured = products.slice(0, 3)
   font-weight: 700;
 }
 
-/* ---------- Testimonials ---------- */
-.quote {
-  padding: 30px 28px;
-  display: flex;
-  flex-direction: column;
-}
-
-.quote__stars {
-  color: #ffb100;
-  letter-spacing: 3px;
-  margin-bottom: 14px;
-}
-
-.quote blockquote {
-  margin: 0 0 20px;
-  color: var(--ink);
-  font-size: 15.5px;
-  line-height: 1.7;
-  flex: 1;
-}
-
-.quote figcaption strong {
-  display: block;
-  color: var(--brand);
-  font-size: 15px;
-}
-
-.quote figcaption span {
-  display: block;
-  color: var(--muted);
-  font-size: 13px;
-}
-
 /* ---------- CTA ---------- */
 .cta {
   padding: 64px 0;
@@ -551,8 +420,7 @@ const featured = products.slice(0, 3)
 
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
-  .hero__inner,
-  .about-strip {
+  .hero__inner {
     grid-template-columns: 1fr;
     gap: 36px;
   }
@@ -562,9 +430,6 @@ const featured = products.slice(0, 3)
   .hero__media {
     order: -1;
   }
-  .stats__inner {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .industries {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -573,14 +438,20 @@ const featured = products.slice(0, 3)
   }
 }
 
-@media (max-width: 560px) {
-  .stats__inner {
+@media (max-width: 720px) {
+  .advantages {
     grid-template-columns: 1fr;
-    gap: 28px;
   }
+}
+
+@media (max-width: 560px) {
   .hero__points {
     gap: 12px;
     flex-direction: column;
+  }
+  .advantage {
+    padding: 22px 48px 22px 18px;
+    min-height: 0;
   }
 }
 </style>

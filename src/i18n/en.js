@@ -17,7 +17,6 @@ export default {
   /* ---------- Footer ---------- */
   'footer.quickLinks': 'Quick Links',
   'footer.categories': 'Product Categories',
-  'footer.factory': 'Factory',
   'footer.email': 'Email',
   'footer.tel': 'Tel',
   'footer.whatsapp': 'WhatsApp',
@@ -29,12 +28,12 @@ export default {
   'home.hero.tag': 'Factory Direct · Since 2008',
   'home.hero.title': 'Nylon Cable Tie Manufacturer & Supplier in China',
   'home.hero.lead':
-    'ISO 9001 certified factory producing PA66 nylon cable ties, UV resistant ties, releasable ties and stainless steel ties. OEM / ODM supported, free samples, quotation within 12 hours.',
+    'ISO 9001 certified factory producing PA66 nylon cable ties, UV resistant ties, releasable ties and stainless steel ties. OEM / ODM supported, quotation within 24 hours.',
   'home.hero.ctaProducts': 'View Products',
   'home.hero.ctaQuote': 'Request a Quote',
   'home.hero.p1': '100% virgin PA66 material',
   'home.hero.p2': 'MOQ from 10,000 pcs',
-  'home.hero.p3': '7-10 days delivery',
+  'home.hero.p3': '7-10 days shipping',
 
   /* ---------- Home : products ---------- */
   'home.products.eyebrow': 'Our Products',
@@ -44,9 +43,8 @@ export default {
   'home.products.seeAll': 'See all products',
 
   /* ---------- Home : why us ---------- */
-  'home.why.eyebrow': 'Why YAMAXUN',
+  'home.why.eyebrow': 'Why sxpackage',
   'home.why.title': 'Your Reliable Cable Tie Partner',
-  'home.why.sub': 'We are not a trading company. You work directly with the manufacturer.',
 
   /* ---------- Home : factory ---------- */
   'home.factory.eyebrow': 'About the factory',
@@ -66,15 +64,15 @@ export default {
 
   /* ---------- Home : process ---------- */
   'home.process.eyebrow': 'How we work',
-  'home.process.title': 'From Inquiry to Delivery in 5 Steps',
+  'home.process.title': 'From Inquiry to Shipping in 4 Steps',
 
   /* ---------- Home : testimonials ---------- */
   'home.testimonials.eyebrow': 'Testimonials',
   'home.testimonials.title': 'What Our Customers Say',
 
   /* ---------- Home : CTA ---------- */
-  'home.cta.title': 'Need a quotation or free samples?',
-  'home.cta.sub': 'Tell us the size, color and quantity. We reply within 12 working hours.',
+  'home.cta.title': 'Need a quotation?',
+  'home.cta.sub': 'Tell us the size, color and quantity. We reply within 3 working days.',
   'home.cta.btn': 'Send Inquiry',
 
   /* ---------- Product page ---------- */
@@ -97,7 +95,7 @@ export default {
   'product.modal.material': 'Material',
   'product.modal.packaging': 'Packaging',
   'product.modal.moq': 'MOQ',
-  'product.modal.note': 'Free samples available · Quotation within 12 hours',
+  'product.modal.note': 'Quotation within 24 hours',
   'product.modal.back': 'Back to list',
   'product.modal.inquire': 'Inquire this product',
   'product.modal.close': 'Close',
@@ -145,11 +143,10 @@ export default {
   /* ---------- Contact page ---------- */
   'contact.title': 'Contact Us & Get a Quotation',
   'contact.sub':
-    'Fill in the form below and we will reply with a detailed quotation and product photos within 12 working hours. Free samples are available for all standard sizes.',
+    'Fill in the form below and we will reply with a detailed quotation and product photos within 3 working days.',
   'contact.email': 'Email',
   'contact.phone': 'Telephone',
   'contact.whatsapp': 'WhatsApp',
-  'contact.hours': 'Working hours',
   'contact.formTitle': 'Send an Inquiry',
   'contact.formSub':
     'The more details you give, the more accurate the quotation.',
@@ -172,25 +169,22 @@ export default {
   'contact.submit': 'Send Inquiry',
   'contact.sending': 'Sending...',
   'contact.successTitle': 'Thank you, your inquiry has been sent!',
-  'contact.successText': 'We will get back to you within 12 working hours with a quotation.',
+  'contact.successText': 'We will get back to you within 3 working days with a quotation.',
   'contact.again': 'Send another inquiry',
   'contact.demoTitle': 'Demo mode.',
   'contact.demoText':
     'No Formcarry endpoint is configured yet, so the form does not send emails. Add your endpoint to',
-  'contact.address': 'Factory Address',
   'contact.trade': 'Trade Terms',
   'contact.trade.moq': 'MOQ',
-  'contact.trade.samples': 'Samples',
   'contact.trade.payment': 'Payment',
   'contact.trade.incoterms': 'Incoterms',
   'contact.trade.port': 'Port',
-  'contact.trade.lead': 'Lead time',
+  'contact.trade.lead': 'Shipping time',
   'contact.trade.v.moq': 'From 10,000 pcs per size',
-  'contact.trade.v.samples': 'Free, courier cost on buyer',
   'contact.trade.v.payment': 'T/T 30% deposit, L/C at sight',
   'contact.trade.v.incoterms': 'EXW / FOB / CIF / DDP',
   'contact.trade.v.port': 'Ningbo or Shanghai',
-  'contact.trade.v.lead': '7-10 days (standard)',
+  'contact.trade.v.lead': 'Ships in 7-10 days (standard)',
   'contact.chatTitle': 'Prefer to talk directly?',
   'contact.chatText': 'Add us on WhatsApp for a fast reply during Chinese working hours.',
   'contact.chatBtn': 'Chat on WhatsApp',
@@ -206,7 +200,7 @@ export default {
   /* ---------- SEO ---------- */
   'seo.home.title': 'Nylon Cable Tie Manufacturer & Supplier',
   'seo.home.desc':
-    'Factory-direct PA66 nylon cable ties, UV resistant ties, releasable ties and stainless steel ties. ISO 9001 certified, OEM/ODM supported, free samples.',
+    'Factory-direct PA66 nylon cable ties, UV resistant ties, releasable ties and stainless steel ties. ISO 9001 certified, OEM/ODM supported.',
   'seo.products.title': 'Products - Nylon Cable Ties',
   'seo.products.desc':
     'Browse our full range of nylon cable ties: standard PA66, UV resistant, releasable, heavy duty, stainless steel and colored ties with full specifications.',
@@ -215,5 +209,5 @@ export default {
     '18 years of cable tie manufacturing experience, 12,000 m2 facility, 46 injection molding lines, ISO 9001 / UL / CE / RoHS certified.',
   'seo.contact.title': 'Contact & Inquiry',
   'seo.contact.desc':
-    'Send us an inquiry for nylon cable ties. Free samples, quotation within 12 hours, factory direct price.',
+    'Send us an inquiry for nylon cable ties. Quotation within 24 hours, factory direct price.',
 }

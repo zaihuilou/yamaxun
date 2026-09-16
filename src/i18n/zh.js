@@ -17,7 +17,6 @@ export default {
   /* ---------- Footer ---------- */
   'footer.quickLinks': '快速链接',
   'footer.categories': '产品分类',
-  'footer.factory': '工厂',
   'footer.email': '邮箱',
   'footer.tel': '电话',
   'footer.whatsapp': 'WhatsApp',
@@ -29,12 +28,12 @@ export default {
   'home.hero.tag': '厂家直销 · 始于 2008',
   'home.hero.title': '中国尼龙扎带厂家与供应商',
   'home.hero.lead':
-    '通过 ISO 9001 认证的尼龙扎带工厂，生产 PA66 尼龙扎带、抗紫外线扎带、可重复使用扎带和不锈钢扎带。支持 OEM / ODM，免费样品，12 小时内报价。',
+    '通过 ISO 9001 认证的尼龙扎带工厂，生产 PA66 尼龙扎带、抗紫外线扎带、可重复使用扎带和不锈钢扎带。支持 OEM / ODM，24 小时内报价。',
   'home.hero.ctaProducts': '查看产品',
   'home.hero.ctaQuote': '获取报价',
   'home.hero.p1': '100% 全新 PA66 原料',
   'home.hero.p2': '起订量低至 10,000 条',
-  'home.hero.p3': '7-10 天交货',
+  'home.hero.p3': '7-10 天发货',
 
   /* ---------- Home : products ---------- */
   'home.products.eyebrow': '产品中心',
@@ -45,7 +44,6 @@ export default {
   /* ---------- Home : why us ---------- */
   'home.why.eyebrow': '为什么选择我们',
   'home.why.title': '您值得信赖的扎带合作伙伴',
-  'home.why.sub': '我们不是贸易公司，您直接对接生产厂家。',
 
   /* ---------- Home : factory ---------- */
   'home.factory.eyebrow': '关于工厂',
@@ -64,15 +62,15 @@ export default {
 
   /* ---------- Home : process ---------- */
   'home.process.eyebrow': '合作流程',
-  'home.process.title': '从询价到交货只需 5 步',
+  'home.process.title': '从询价到发货只需 4 步',
 
   /* ---------- Home : testimonials ---------- */
   'home.testimonials.eyebrow': '客户评价',
   'home.testimonials.title': '客户怎么说',
 
   /* ---------- Home : CTA ---------- */
-  'home.cta.title': '需要报价或免费样品？',
-  'home.cta.sub': '告诉我们尺寸、颜色和数量，我们会在 12 个工作日内回复。',
+  'home.cta.title': '需要报价？',
+  'home.cta.sub': '告诉我们尺寸、颜色和数量，我们会在 3 个工作日内回复。',
   'home.cta.btn': '发送询价',
 
   /* ---------- Product page ---------- */
@@ -93,7 +91,7 @@ export default {
   'product.modal.material': '材质',
   'product.modal.packaging': '包装',
   'product.modal.moq': '起订量',
-  'product.modal.note': '可提供免费样品 · 12 小时内报价',
+  'product.modal.note': '24 小时内报价',
   'product.modal.back': '返回列表',
   'product.modal.inquire': '咨询此产品',
   'product.modal.close': '关闭',
@@ -138,11 +136,10 @@ export default {
 
   /* ---------- Contact page ---------- */
   'contact.title': '联系我们并获取报价',
-  'contact.sub': '填写下方表单，我们会在 12 个工作日内提供详细报价与产品图片。常规规格均可提供免费样品。',
+  'contact.sub': '填写下方表单，我们会在 3 个工作日内提供详细报价与产品图片。',
   'contact.email': '邮箱',
   'contact.phone': '电话',
   'contact.whatsapp': 'WhatsApp',
-  'contact.hours': '工作时间',
   'contact.formTitle': '发送询价',
   'contact.formSub': '信息越详细，报价越准确。',
   'contact.field.name': '姓名',
@@ -164,24 +161,21 @@ export default {
   'contact.submit': '发送询价',
   'contact.sending': '发送中...',
   'contact.successTitle': '感谢您的询价，我们已收到！',
-  'contact.successText': '我们会在 12 个工作日内回复报价。',
+  'contact.successText': '我们会在 3 个工作日内回复报价。',
   'contact.again': '再发一条询价',
   'contact.demoTitle': '演示模式。',
   'contact.demoText': '尚未配置 Formcarry 接口，表单不会真正发送邮件。请把接口地址添加到',
-  'contact.address': '工厂地址',
   'contact.trade': '贸易条款',
   'contact.trade.moq': '起订量',
-  'contact.trade.samples': '样品',
   'contact.trade.payment': '付款方式',
   'contact.trade.incoterms': '贸易术语',
   'contact.trade.port': '港口',
-  'contact.trade.lead': '交货期',
+  'contact.trade.lead': '发货期',
   'contact.trade.v.moq': '每个规格 10,000 条起',
-  'contact.trade.v.samples': '免费，运费由买家承担',
   'contact.trade.v.payment': 'T/T 30% 定金，即期信用证',
   'contact.trade.v.incoterms': 'EXW / FOB / CIF / DDP',
   'contact.trade.v.port': '宁波或上海',
-  'contact.trade.v.lead': '7-10 天（常规品）',
+  'contact.trade.v.lead': '7-10 天发货（常规品）',
   'contact.chatTitle': '想直接沟通？',
   'contact.chatText': '添加我们的 WhatsApp，在中国工作时间内快速回复。',
   'contact.chatBtn': 'WhatsApp 咨询',
@@ -197,7 +191,7 @@ export default {
   /* ---------- SEO ---------- */
   'seo.home.title': '尼龙扎带厂家与供应商',
   'seo.home.desc':
-    '厂家直销 PA66 尼龙扎带、抗紫外线扎带、可重复使用扎带与不锈钢扎带。通过 ISO 9001 认证，支持 OEM/ODM，免费提供样品。',
+    '厂家直销 PA66 尼龙扎带、抗紫外线扎带、可重复使用扎带与不锈钢扎带。通过 ISO 9001 认证，支持 OEM/ODM。',
   'seo.products.title': '产品中心 - 尼龙扎带',
   'seo.products.desc':
     '浏览全系列尼龙扎带：常规 PA66、抗紫外线、可重复使用、重型、不锈钢与彩色扎带，提供完整规格参数。',
@@ -205,5 +199,5 @@ export default {
   'seo.about.desc':
     '18 年扎带制造经验，12,000 平方米厂房，46 条注塑生产线，通过 ISO 9001 / UL / CE / RoHS 认证。',
   'seo.contact.title': '联系我们 - 询价',
-  'seo.contact.desc': '发送尼龙扎带询价，免费样品，12 小时内报价，厂家直销价格。',
+  'seo.contact.desc': '发送尼龙扎带询价，24 小时内报价，厂家直销价格。',
 }
