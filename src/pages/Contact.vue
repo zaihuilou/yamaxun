@@ -138,6 +138,7 @@ const contactCards = computed(() => [
 
 const tradeTerms = [
   { labelKey: 'contact.trade.moq', valueKey: 'contact.trade.v.moq' },
+  { labelKey: 'contact.trade.payment', valueKey: 'contact.trade.v.payment' },
   { labelKey: 'contact.trade.incoterms', valueKey: 'contact.trade.v.incoterms' },
   { labelKey: 'contact.trade.port', valueKey: 'contact.trade.v.port' },
   { labelKey: 'contact.trade.lead', valueKey: 'contact.trade.v.lead' },
