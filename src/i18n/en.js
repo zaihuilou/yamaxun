@@ -22,7 +22,7 @@ export default {
   'footer.wechat': 'WeChat',
   'footer.inquiry': 'Send Inquiry',
   'footer.rights': 'All rights reserved.',
-  'footer.certs': 'Nylon Cable Tie Manufacturer · ISO 9001 · CE · RoHS · UL',
+  'footer.certs': 'Nylon Cable Tie Manufacturer · ISO 9001 · CE · RoHS',
 
   /* ---------- Home : hero ---------- */
   'home.hero.tag': 'Factory Direct · Since 2008',
@@ -206,7 +206,7 @@ export default {
     'Browse our full range of nylon cable ties: standard PA66, UV resistant, releasable, heavy duty, stainless steel and colored ties with full specifications.',
   'seo.about.title': 'About Us - Cable Tie Factory',
   'seo.about.desc':
-    '18 years of cable tie manufacturing experience, 12,000 m2 facility, 46 injection molding lines, ISO 9001 / UL / CE / RoHS certified.',
+    '18 years of cable tie manufacturing experience, 12,000 m2 facility, 46 injection molding lines, ISO 9001 / CE / RoHS certified.',
   'seo.contact.title': 'Contact & Inquiry',
   'seo.contact.desc':
     'Send us an inquiry for nylon cable ties. Quotation within 24 hours, factory direct price.',

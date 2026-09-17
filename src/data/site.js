@@ -49,7 +49,6 @@ export const site = {
   /* Certifications shown on About page */
   certificates: [
     { code: 'ISO 9001:2015', title: { en: 'Quality Management System', zh: '质量管理体系' } },
-    { code: 'UL 94V-2', title: { en: 'Flammability rating', zh: '阻燃等级认证' } },
     { code: 'CE', title: { en: 'European conformity', zh: '欧盟合规认证' } },
     { code: 'RoHS / REACH', title: { en: 'Environmental compliance', zh: '环保合规认证' } },
     { code: 'SGS', title: { en: 'Third party tensile test report', zh: '第三方拉力检测报告' } },

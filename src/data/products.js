@@ -47,7 +47,7 @@ export const products = [
       spec('Tensile strength', '拉力强度', '8 kg - 114 kg (18 lb - 250 lb)', '8 kg - 114 kg'),
       spec('Working temperature', '工作温度', '-40°C to +85°C', '-40°C ~ +85°C'),
       spec('Flammability', '阻燃等级', 'UL 94V-2', 'UL 94V-2'),
-      spec('Certification', '认证', 'CE / RoHS / REACH / UL', 'CE / RoHS / REACH / UL'),
+      spec('Certification', '认证', 'CE / RoHS / REACH', 'CE / RoHS / REACH'),
     ],
     features: [
       { en: 'Self-locking head with stainless steel pawl for a secure grip', zh: '头部自锁不锈钢卡齿，咬合牢固不滑脱' },

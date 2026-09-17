@@ -22,7 +22,7 @@ export default {
   'footer.wechat': '微信',
   'footer.inquiry': '发送询价',
   'footer.rights': '版权所有。',
-  'footer.certs': '尼龙扎带制造商 · ISO 9001 · CE · RoHS · UL',
+  'footer.certs': '尼龙扎带制造商 · ISO 9001 · CE · RoHS',
 
   /* ---------- Home : hero ---------- */
   'home.hero.tag': '厂家直销 · 始于 2008',
@@ -197,7 +197,7 @@ export default {
     '浏览全系列尼龙扎带：常规 PA66、抗紫外线、可重复使用、重型、不锈钢与彩色扎带，提供完整规格参数。',
   'seo.about.title': '关于我们 - 扎带工厂',
   'seo.about.desc':
-    '18 年扎带制造经验，12,000 平方米厂房，46 条注塑生产线，通过 ISO 9001 / UL / CE / RoHS 认证。',
+    '18 年扎带制造经验，12,000 平方米厂房，46 条注塑生产线，通过 ISO 9001 / CE / RoHS 认证。',
   'seo.contact.title': '联系我们 - 询价',
   'seo.contact.desc': '发送尼龙扎带询价，24 小时内报价，厂家直销价格。',
 }
